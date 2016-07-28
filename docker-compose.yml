@@ -6,17 +6,19 @@ services:
             - "80:80"
         volumes:
             - ./code/:/data/webroot/:ro
-        #    - ./config/nginx/:/etc/nginx/:ro
+            - ./config/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+            - ./config/nginx/conf.d:/etc/nginx/conf.d/*:ro
     php-fpm:
-        image: c3t3m3:docker-fpm
+        image: c3t3m3/docker-fpm
         ports:
             - "9000:9000"
         volumes:
             - ./code/:/data/webroot/:ro
-        #    - ./config/php.ini:/usr/local/etc/php/php.ini:ro
+            - ./config/php-fpm:/usr/local/etc/php-fpm.d/:ro
     redis:
+#        image: c3t3m3/docker-redis
         image: redis:3.2.4
         ports:
             - "6379:6379"
         volumes:
-            - ./confog/redis.conf://usr/local/etc/redis/redis.conf:ro
+            - ./config/redis/redis.conf:/etc/redis/redis.conf:ro
