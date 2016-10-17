@@ -8,7 +8,7 @@ services:
             - ./code/:/data/webroot/:ro
         #    - ./config/nginx/:/etc/nginx/:ro
     php-fpm:
-        image: c3t3m3:docker-fpm
+        image: c3t3m3/docker-fpm
         ports:
             - "9000:9000"
         volumes:
